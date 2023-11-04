@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+{{ form_start(f) }}
+{{ form_label(f.min,"min") }}
+{{ form_widget(f.min) }}
+{{ form_label(f.max,"max") }}
+{{ form_widget(f.max) }}
+{{ form_widget(f.recherche) }}
+{{ form_end(f) }}
+
+{% if x is defined %}
+      <table border="2">
+          <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Delete</th>
+              <th>Update</th>
+          </tr>
+          {% for i in x %}
+          <tr>
+              <td>{{ i.username }}</td>
+              <td>{{ i.email }}</td>
+              <td>{{ i.getNbBook }}</td>
+              <td><a href="{{ path('author.delete',{'id': i.id}) }}">Delete</a></td>
+              <td><a href="{{ path('author.edit',{'id': i.id}) }}">Update</a></td>
+          </tr>
+          {% endfor %}
+
+      </table>
+{% else %}
+    <h1 style="color:red;">no Author now </h1>
+
+{% endif %}
+
+<p>delete author how has 0 books <a href="{{ path('author.delete0') }}">Delete</a></p>
+<a href="{{ path('app_author') }}">Ajouter</a>
+
+</body>
+</html>
